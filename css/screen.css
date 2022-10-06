@@ -2,11 +2,54 @@
 #FONTS
 \*------------------------------------*/
 
+@font-face {
+    font-family: "Inter Web";
+    src: url('../fonts/Inter-Regular.woff2') format("woff2");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Inter Web";
+    src: url('../fonts/Inter-SemiBold.woff2') format("woff2");
+    font-weight: 700;
+}
+
 /*------------------------------------*\
 #Variables
 \*------------------------------------*/
 
-:root {}
+:root {
+    --global-color-alpha-light: #4F95FF;
+    --global-color-alpha: #3385FF; 
+    --global-color-alpha-dark: #2E77E6;
+    --global-color-alpha-x-dark: #1B4186;
+    --global-color-transparent: 0 0 0 3px #3385ff4D;
+    --global-color-x-transparent: 0 2px 4px #b1b1b14b;  
+
+    /*  white colors*/
+    --global-color-neutral-xxxxx-light: #FFFFFF;
+    --global-color-neutral-xxxx-light: #F5F6FA;
+    --global-color-neutral-xxx-light: #E2E3E7; 
+    --global-color-neutral-xx-light: #CACCD4;
+    --global-color-neutral-x-light: #B5B6C0;
+    --global-color-neutral-light: #A0A1AD;
+    --global-color-neutral: #8B8C9A;
+    --global-color-neutral-dark: #757787;
+    --global-color-neutral-x-dark: #606274;
+    --global-color-neutral-xx-dark: #4B4C60;
+    --global-color-neutral-xxx-dark: #35374D;
+    --global-color-neutral-xxxx-dark: #20223A;
+
+    /* whitespace */
+    --global-baseline: 8px;
+    --global-whitespace-xs: calc(var(--global-baseline) / 2); /* = 4px */
+    --global-whitespace-sm: var(--global-baseline); /* = 8px */
+    --global-whitespace-md: calc(var(--global-baseline) * 2); /* = 16px */
+    --global-whitespace: calc(var(--global-baseline) * 3); /* = 24px */
+    --global-whitespace-lg: calc(var(--global-baseline) * 4); /* = 32px */   
+    --global-whitespace-xl: calc(var(--global-baseline) * 6); /* = 48px */    
+    
+}
 
 /* CSS variables here */
 
@@ -23,13 +66,23 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
-    color: grey;
+    font-family: "Inter Web", arial, sans-serif;
+    color: var(--global-color-neutral-xxxx-dark);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: white;
+    -moz-osx-font-smoothing: grayscale; 
+    accent-color: var(--global-color-alpha);
+    background-color: var(--global-color-neutral-xxxx-light);
 }
+
+
+@media (prefers-color-scheme: dark) {
+    html {
+        background-color: var(--global-color-neutral-xxxx-dark);
+        color: var(--global-color-neutral-xxxxx-light);
+    }
+}
+
 
 *,
 *:before,
@@ -46,13 +99,13 @@ html {
 
 ::-moz-selection {
     background: HotPink;
-    color: white;
+    color: var(--global-color-neutral-xxxxx-light);
     text-shadow: none;
 }
 
 ::selection {
-    background: HotPink;
-    color: white;
+    background: var(--global-color-alpha);
+    color: var(--global-color-neutral-xxxxx-light);
     text-shadow: none;
 }
 
@@ -86,27 +139,27 @@ h3 {
 h1 {
     font-size: 36px;
     line-height: 48px;
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitespace);
 }
 
 h2 {
     font-size: 32px;
     line-height: 40px;
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitespace);
 }
 
 h3 {
     font-size: 26px;
     line-height: 32px;
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitespace);
 }
 
 h4,
 h5,
 h6 {
     font-size: 20px;
-    line-height: 24px;
-    margin: 0 0 24px;
+    line-height: var(--global-whitespace);
+    margin: 0 0 var(--global-whitespace);
 }
 
 p,
@@ -116,12 +169,12 @@ dl,
 table,
 address,
 figure {
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitespace);
 }
 
 ul,
 ol {
-    padding-left: 24px;
+    padding-left: var(--global-whitespace);
 }
 
 li ul,
@@ -133,7 +186,7 @@ blockquote {
     font-style: normal;
     font-size: 23px;
     line-height: 32px;
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitespace);
 }
 
 blockquote * {
@@ -144,7 +197,7 @@ blockquote * {
 figcaption {
     font-weight: 400;
     font-size: 12px;
-    line-height: 16px;
+    line-height: var(--global-whitespace-md);
     margin-top: 8px;
 }
 
@@ -152,23 +205,31 @@ hr {
     border: 0;
     height: 1px;
     background: LightGrey;
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitespace);
 }
 
 a {
-    color: HotPink;
+    color: var(--global-color-alpha);
+    text-decoration: none;
     transition: all .1s ease-in-out;
 }
 
 a:visited,
 a:active {
-    color: HotPink;
+    color: var(--global-color-alpha);
 }
 
 a:hover,
 a:focus {
-    color: DeepPink;
+    color: var(--global-color-alpha);
 }
+
+label,
+input{
+    display: block;
+}
+
+
 
 /*------------------------------------*\
 #OBJECTS
@@ -182,18 +243,20 @@ a:focus {
 
 .o-row {
     position: relative;
-    padding: 24px 24px 0;
+    padding: var(--global-whitespace) var(--global-whitespace) 0;
 }
 
 .o-row--login {
-    /* stuff here to align the card */
+    /* stuff here to align the card --- not done*/
+    min-height: 100vh;
+    display: flex;
 }
 
 /* size modifiers */
 
 .o-row--lg {
     padding-top: 48px;
-    padding-bottom: 24px;
+    padding-bottom: var(--global-whitespace);
 }
 
 .o-row--xl {
@@ -224,8 +287,7 @@ a:focus {
 .o-container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 79.5em;
-    /* 79.5 * 16px = 1272 */
+    max-width: 79.5em; /* 79.5 * 16px = 1272 */
     width: 100%;
 }
 
@@ -239,20 +301,19 @@ a:focus {
     position: relative;
 }
 
-.o-section+.o-section {
-    padding-top: 24px;
+.o-section + .o-section {
+    padding-top: var(--global-whitespace);
 }
 
 @media (min-width: 768px) {
-
-    .o-section--lg+.o-section--lg,
-    .o-section--xl+.o-section--xl {
+    .o-section--lg + .o-section--lg,
+    .o-section--xl + .o-section--xl {
         padding-top: 48px;
     }
 }
 
 @media (min-width: 992px) {
-    .o-section--xl+.o-section--xl {
+    .o-section--xl + .o-section--xl {
         padding-top: 72px;
     }
 }
@@ -282,7 +343,7 @@ a:focus {
     margin: 0 -12px;
 }
 
-.o-layout--gutter>.o-layout__item {
+.o-layout--gutter > .o-layout__item {
     padding: 0 12px;
 }
 
@@ -290,23 +351,23 @@ a:focus {
     margin: 0 -6px;
 }
 
-.o-layout--gutter-sm>.o-layout__item {
+.o-layout--gutter-sm > .o-layout__item {
     padding: 0 6px;
 }
 
 .o-layout--gutter-lg {
-    margin: 0 -24px;
+    margin: 0 var(--global-whitespace);
 }
 
-.o-layout--gutter-lg>.o-layout__item {
-    padding: 0 24px;
+.o-layout--gutter-lg > .o-layout__item {
+    padding: 0 var(--global-whitespace);
 }
 
 .o-layout--gutter-xl {
     margin: 0 -48px;
 }
 
-.o-layout--gutter-xl>.o-layout__item {
+.o-layout--gutter-xl > .o-layout__item {
     padding: 0 48px;
 }
 
@@ -431,6 +492,33 @@ a:focus {
     ---
     Website main logo
 */
+.c-logo{
+    height: var(--global-whitespace);
+    display: flex;
+    justify-content: center;
+}
+
+.c-logo__svg{
+    height: 100%;
+}
+
+.c-logo__path--1 {
+    fill: var(--logo__path--1--fill, var(--global-color-neutral-xxxx-dark));
+}
+.c-logo__path--2 {
+fill: var(--logo__path--2--fill, var(--global-color-alpha));
+}
+.c-logo__path--3 {
+fill: var(--logo__path--3--fill, var(--global-color-alpha-x-dark));
+}
+
+@media (prefers-color-scheme: dark) {
+    .c-logo {
+      --logo__path--1--fill: var(--global-color-neutral-xxxxx-light);
+      --logo__path--2--fill: var(--logo__path--1--fill);
+      --logo__path--3--fill: var(--logo__path--1--fill);
+    }
+}
 
 /*
     Component: Card
@@ -438,11 +526,45 @@ a:focus {
     Card with box shadow
 */
 
+.c-card{
+    background-color: var(--card--backgroud-color ,var(--global-color-neutral-xxxxx-light));
+    border-radius: 3px;
+    border: 1px solid var(--card--border-color, var(--global-color-neutral-xxx-light));
+    box-shadow: 0 2px 4px #b1b1b14b;
+}
+
+@media (prefers-color-scheme: dark) {
+    .c-card{
+        --card--backgroud-color: var(--global-color-neutral-xxx-dark);
+        --card--border-color: var(--global-color-neutral-xx-dark);
+    }
+}
+
+.c-card__header{
+    padding: 48px 48px 0
+}
+.c-card__title{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: var(--global-whitespace);
+}
+.c-card__body{
+    padding: var(--global-whitespace-md) var(--global-whitespace);
+}
+.c-card__footer{
+    text-align: center;
+}
 /*
     Component: Forms
     ---
     Everything form related here
 */
+
+.c-form-field--option{
+    display: flex;
+    gap: 8px;
+}
 
 /*
     Component: Input
@@ -450,9 +572,30 @@ a:focus {
     Class to put on all input="text" like form inputs
 */
 
-.c-input {}
+.c-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    border: 1px solid var(--input--border-color ,var(--global-color-neutral-xxx-light));
+    border-radius: 3px;
+    font-family: "Inter Web", sans-serif;
+    line-height: var(--global-whitespace);
+    padding: 11px var(--global-whitespace-md);
+    outline: none;
+}
 
-.c-input:focus {}
+.c-input:focus {
+    border-color: var(--global-color-alpha);
+    box-shadow: var(--global-color-transparent);/* rgba(51, 133, 255, .3)*/
+}
+
+@media (prefers-color-scheme: dark) {
+    .c-input{
+        background-color: var(--global-color-neutral-xxxx-dark);
+        --input--border-color: var(--global-color-neutral-xxxx-dark);
+    }
+}
 
 /*
     Component: Label
@@ -460,11 +603,29 @@ a:focus {
     Class to put on all form labels
 */
 
-.c-label {}
+.c-label {
+    font-size: 14px;
+    line-height: var(--global-whitespace-md);
+    margin-bottom: 8px;
+    color: var(--label--color ,var(--global-color-neutral-x-dark));
+}
+
+.c-label--option{
+    margin-bottom: 0px;
+    margin-left: 8px;;
+}
+
+@media (prefers-color-scheme: dark) {
+    .c-label{
+        --label--color: var(--global-color-neutral-x-light);
+    }
+}
 
 /* If a input is focused within the form-field class change te color of the label */
 
-.c-form-field:focus-within .c-label {}
+.c-form-field:focus-within .c-label {
+
+}
 
 /*
     Component: Button
@@ -472,16 +633,47 @@ a:focus {
     Class to put on form buttons or links
 */
 
-.c-button {}
+.c-button {
+    width: 100%;
+    background-color: var(--global-color-alpha);
+    border: 1px solid var(--global-color-alpha-dark);
+    border-radius: 3px;
+    font-family: "Inter Web", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--global-color-neutral-xxxxx-light);
+    line-height: var(--global-whitespace);
+    padding: 11px var(--global-whitespace-md);
+    outline: none;
+}
 
-.c-button:hover {}
+.c-button:hover {
 
-.c-button:focus {}
+}
 
-.c-button:active {}
+.c-button:focus {
+    box-shadow: var(--global-color-transparent);/* rgba(51, 133, 255, .3)*/
+}
 
-.c-button--block {}
+.c-button:active {
 
+}
+
+.c-button--block {
+
+}
+
+/*
+#OPTION CHECKBOX
+*/
+
+.c-option{
+    fill: var(--global-color-neutral-xxxx-dark);
+    accent-color: var(--global-color-neutral-xxxx-dark);
+}
+.c-option--hidden:checked + .c-custom-option {
+    fill: var(--global-color-neutral-xxxx-dark);
+}
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
@@ -643,43 +835,33 @@ a:focus {
     .u-1-of-2-bp1 {
         width: 50% !important;
     }
-
     .u-1-of-3-bp1 {
         width: 33.3333333333% !important;
     }
-
     .u-2-of-3-bp1 {
         width: 66.6666666667% !important;
     }
-
     .u-1-of-4-bp1 {
         width: 25% !important;
     }
-
     .u-3-of-4-bp1 {
         width: 75% !important;
     }
-
     .u-1-of-5-bp1 {
         width: 20% !important;
     }
-
     .u-2-of-5-bp1 {
         width: 40% !important;
     }
-
     .u-3-of-5-bp1 {
         width: 60% !important;
     }
-
     .u-4-of-5-bp1 {
         width: 80% !important;
     }
-
     .u-1-of-6-bp1 {
         width: 16.6666666667% !important;
     }
-
     .u-5-of-6-bp1 {
         width: 83.3333333333% !important;
     }
@@ -689,43 +871,33 @@ a:focus {
     .u-1-of-2-bp2 {
         width: 50% !important;
     }
-
     .u-1-of-3-bp2 {
         width: 33.3333333333% !important;
     }
-
     .u-2-of-3-bp2 {
         width: 66.6666666667% !important;
     }
-
     .u-1-of-4-bp2 {
         width: 25% !important;
     }
-
     .u-3-of-4-bp2 {
         width: 75% !important;
     }
-
     .u-1-of-5-bp2 {
         width: 20% !important;
     }
-
     .u-2-of-5-bp2 {
         width: 40% !important;
     }
-
     .u-3-of-5-bp2 {
         width: 60% !important;
     }
-
     .u-4-of-5-bp2 {
         width: 80% !important;
     }
-
     .u-1-of-6-bp2 {
         width: 16.6666666667% !important;
     }
-
     .u-5-of-6-bp2 {
         width: 83.3333333333% !important;
     }
@@ -735,43 +907,33 @@ a:focus {
     .u-1-of-2-bp3 {
         width: 50% !important;
     }
-
     .u-1-of-3-bp3 {
         width: 33.3333333333% !important;
     }
-
     .u-2-of-3-bp3 {
         width: 66.6666666667% !important;
     }
-
     .u-1-of-4-bp3 {
         width: 25% !important;
     }
-
     .u-3-of-4-bp3 {
         width: 75% !important;
     }
-
     .u-1-of-5-bp3 {
         width: 20% !important;
     }
-
     .u-2-of-5-bp3 {
         width: 40% !important;
     }
-
     .u-3-of-5-bp3 {
         width: 60% !important;
     }
-
     .u-4-of-5-bp3 {
         width: 80% !important;
     }
-
     .u-1-of-6-bp3 {
         width: 16.6666666667% !important;
     }
-
     .u-5-of-6-bp3 {
         width: 83.3333333333% !important;
     }
@@ -781,43 +943,33 @@ a:focus {
     .u-1-of-2-bp4 {
         width: 50% !important;
     }
-
     .u-1-of-3-bp4 {
         width: 33.3333333333% !important;
     }
-
     .u-2-of-3-bp4 {
         width: 66.6666666667% !important;
     }
-
     .u-1-of-4-bp4 {
         width: 25% !important;
     }
-
     .u-3-of-4-bp4 {
         width: 75% !important;
     }
-
     .u-1-of-5-bp4 {
         width: 20% !important;
     }
-
     .u-2-of-5-bp4 {
         width: 40% !important;
     }
-
     .u-3-of-5-bp4 {
         width: 60% !important;
     }
-
     .u-4-of-5-bp4 {
         width: 80% !important;
     }
-
     .u-1-of-6-bp4 {
         width: 16.6666666667% !important;
     }
-
     .u-5-of-6-bp4 {
         width: 83.3333333333% !important;
     }
@@ -863,7 +1015,6 @@ No media query since this is the default in mobile first design
 */
 
 @media print {
-
     *,
     *:before,
     *:after {
@@ -874,20 +1025,16 @@ No media query since this is the default in mobile first design
         box-shadow: none !important;
         text-shadow: none !important;
     }
-
     a,
     a:visited {
         text-decoration: underline;
     }
-
     a[href]:after {
         content: " (" attr(href) ")";
     }
-
     abbr[title]:after {
         content: " (" attr(title) ")";
     }
-
     /*
     * Don't show links that are fragment identifiers,
     * or use the `javascript:` pseudo protocol
@@ -896,17 +1043,14 @@ No media query since this is the default in mobile first design
     a[href^="javascript:"]:after {
         content: "";
     }
-
     pre {
         white-space: pre-wrap !important;
     }
-
     pre,
     blockquote {
         border: 1px solid #999;
         page-break-inside: avoid;
     }
-
     /*
     * Printing Tables:
     * http://css-discuss.incutio.com/wiki/Printing_Tables
@@ -914,19 +1058,16 @@ No media query since this is the default in mobile first design
     thead {
         display: table-header-group;
     }
-
     tr,
     img {
         page-break-inside: avoid;
     }
-
     p,
     h2,
     h3 {
         orphans: 3;
         widows: 3;
     }
-
     h2,
     h3 {
         page-break-after: avoid;
